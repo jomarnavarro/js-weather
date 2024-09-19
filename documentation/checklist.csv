@@ -1,0 +1,31 @@
+t.c. no, t.c. goal, expected result, data inputs, outcome, comment, mapped user story
+1, Verify search box is present, Search box is displayed, N/A, , , 1.a
+2, Check weather data is displayed after search, Weather data (temperature, humidity, wind speed) is shown, City: "New York", , , 1.b
+3, Verify weather icon updates based on condition, Correct weather icon is displayed, City: "New York", , , 1.c
+4, Verify search button is functional, Clicking the search button triggers the weather search, City: "Los Angeles", , , 1.b
+5, Ensure city name entered is displayed correctly, City name entered should appear in results, City: "Berlin", , , 1.b
+6, Verify input field accepts alphanumeric values, Input field accepts city names with letters and numbers, City: "San Francisco 123", , , 1.a
+7, Verify error message for invalid city name, "Invalid city name" message is shown, City: "InvalidCity123", , , 2.a
+8, Verify previous weather data is hidden on invalid city name, Weather data is hidden when an invalid city is entered, City: "InvalidCity123", , , 2.b
+9, Ensure weather data is fetched from API, Data is fetched from OpenWeatherMap API, City: "London", , , 3.a
+10, Verify API error handling for invalid city, API returns 404 error and displays message, City: "InvalidCity123", , , 3.b
+11, Validate API call includes correct city name, API call is made with the correct city name, City: "Paris", , , 3.c
+12, Verify response time of the API call, API call completes within a reasonable time, City: "Mumbai", , , 3.a
+13, Ensure previous city’s data is cleared, Previous city's weather data is cleared after new search, City: "Tokyo", then "Berlin", , , 4.a
+14, Verify updated weather info displays correctly, New city's weather data is correctly displayed, City: "Berlin", , , 4.b
+15, Ensure input field clears after search, Input field is cleared after weather data is fetched, City: "Cairo", , , 4.a
+16, Validate weather icon changes based on weather condition, Correct weather icon is shown for different conditions, City: "CloudyCity", , , 5.a
+17, Verify UI design elements are properly displayed, Search box and weather data are centered and styled, N/A, , , 5.b
+18, Check background color consistency, Background color remains consistent across searches, N/A, , , 5.c
+19, Verify font consistency across the app, Fonts are consistent throughout the app, N/A, , , 5.c
+20, Ensure weather data is hidden on initial load, No weather data is displayed on initial page load, N/A, , , 6.a
+21, Verify weather data appears after search, Weather data appears after searching a valid city, City: "Rome", , , 6.b
+22, Ensure no data is displayed for invalid city on initial load, No data is shown if an invalid city is entered first, City: "InvalidCity", , , 6.a
+23, Check temperature is displayed in Celsius, Temperature is shown in Celsius, City: "Madrid", , , 7.a
+24, Ensure temperature is rounded to nearest integer, Temperature is rounded to the nearest whole number, City: "Paris", , , 7.b
+25, Verify temperature conversion based on API unit, Temperature is displayed in Celsius when 'metric' is used, City: "Berlin", , , 7.a
+26, Verify weather icon updates correctly after each search, Weather icon changes appropriately for each new search, City: "Tokyo", then "London", , , 5.a
+27, Ensure wind speed is displayed in kilometers per hour, Wind speed is displayed in "km/h", City: "Toronto", , , 7.b
+28, Verify humidity is displayed as a percentage, Humidity is shown as a percentage, City: "Cairo", , , 7.a
+29, Ensure error message is hidden after valid city is entered, Error message disappears after a valid city is searched, City: "New York", , , 2.b
+30, Verify system behavior when API key is invalid, App displays appropriate error when API key is incorrect, Invalid API key, , , 3.b

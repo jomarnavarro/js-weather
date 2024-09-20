@@ -42,5 +42,7 @@ test.describe( 'Basic Weather Info Displayed. ', () => {
         await searchPage.clearCity();
         await weatherPage.assertWeatherElementsNotVisible();
     });
+
+   
 })
 

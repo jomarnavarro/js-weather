@@ -4,29 +4,49 @@ export class SearchPage {
     readonly page: Page;
     readonly searchTxt: Locator;
     readonly searchBtn: Locator;
+    readonly errorMessagePar: Locator;
 
     constructor(page: Page) {
         this.page = page;
         this.searchTxt = page.locator('.search > input');
         this.searchBtn = page.locator('.search > button');
+        this.errorMessagePar = page.locator('p.error');
     }
 
     async searchCity(city: string ) {
-        this.searchTxt.fill(city);
-        this.searchBtn.click();
+        await this.searchTxt.fill(city);
+        await this.searchBtn.click();
     }
 
     async inputCity(city: string) {
-        this.searchTxt.fill(city);
+        await this.searchTxt.fill(city);
     }
 
     async assertSearchElementsVisible() {
-        expect(this.searchTxt).toBeVisible();
-        expect(this.searchBtn).toBeVisible();
+        await expect(this.searchTxt).toBeVisible();
+        await expect(this.searchBtn).toBeVisible();
     }
 
     async clearCity() {
-        this.searchTxt.fill('');
+        await this.searchTxt.fill('');
+    }
+
+    async clickSearchButton() {
+        await this.searchBtn.click();
+    }
+
+    async assertNoCityInputError() {
+        const noCityInputMsg = /please input a city/;
+        await expect(this.errorMessagePar).toHaveText(noCityInputMsg);
+    }
+
+    async assertErrorMessageNotVisible() {
+        await expect(this.errorMessagePar).not.toBeVisible();
+    }
+
+    async assertInvalidCityErrorVisible(city) {
+        await expect(this.errorMessagePar).toBeVisible();
+        await expect(this.errorMessagePar).toContainText(`Error, ${city} not found`);
     }
 }
 

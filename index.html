@@ -12,6 +12,7 @@
         <div class="search">
             <input type="text" name="" id="" placeholder="enter city name" spellcheck="false">
             <button><img src="images/search.png" alt=""></button>
+            <p class="error"></p>
 
         </div>
         <div class="weather">
@@ -38,20 +39,52 @@
     </div>
 <script>
     const weatherInfo = document.querySelector('.weather');
-    const cityName = document.querySelector('.search > input');
+    const cityTxt = document.querySelector('.search > input');
     const searchBtn = document.querySelector('.search button');
+    const weatherIcon = document.querySelector('img.weather-icon');
+    var errorPar = document.querySelector('p.error');
+
+    const apiKey = "572ec894a538007532600aa76113d31e";
+    const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric";
+
 
     searchBtn.addEventListener('click', () => {
-        if(cityName.value !== '') {
+        const cityName = document.querySelector('.search > input').value;
+        fetchWeatherConditions(cityName);
+    });
+
+    cityTxt.addEventListener('input', () => {
+        weatherInfo.style = 'display: none';
+        errorPar.style = 'display: none';
+    });
+
+    async function fetchWeatherConditions(city) {
+        if(city === '') {
+            errorPar.innerHTML = 'Error, please input a city'
+            errorPar.style = 'display: block';
+            return;
+
+        }
+        const response = await fetch(apiUrl + `&q=${city}&appid=${apiKey}`);
+        var data = await response.json();
+
+        if(data.cod == '404') {
+            errorPar.style = 'display: block';
+            weatherInfo.style = 'display: none'
+            errorPar.innerHTML = `Error, ${city} not found`;
+        } else {
+            errorPar.innerHTML = '';
+            weatherInfo.style = 'display: none'
+            document.querySelector('h1.temp').innerHTML = `${Math.round(data.main.temp)} *C`;
+            document.querySelector('h2.city').innerHTML = data.name;
+            document.querySelector('p.humidity').innerHTML = `${data.main.humidity}%`;
+            document.querySelector('p.wind').innerHTML = `${data.wind.speed} km/h`;
+            // change the weather icon.
+            const weatherCondition = data.weather[0].main.toLowerCase();
+            weatherIcon.src = `images/${weatherCondition}.png`;
             weatherInfo.style = 'display: block';
         }
-        
-    });
-
-    cityName.addEventListener('input', () => {
-        weatherInfo.style = 'display: none';
-    });
-
+    }
     // TODO:  an event that checks when the cityName changes 
     // and checks whether the city is valid so data is displayed.
 

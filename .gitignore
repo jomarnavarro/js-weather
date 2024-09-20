@@ -1,3 +1,4 @@
 video-script.txt
 /node_modules
 test-results*
+.env

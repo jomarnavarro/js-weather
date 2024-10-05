@@ -76,7 +76,7 @@ export default defineConfig({
         // viewport: { width: 1280, height: 720 },
       },
     },
-
+/*
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
@@ -117,7 +117,7 @@ export default defineConfig({
       use: { 
         baseURL: baseEnvUrl.local.home,
       },
-    },
+    },*/
 
     // Example only
     {
